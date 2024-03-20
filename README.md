@@ -5,8 +5,8 @@
 - Linked backend to Azure db and tested with postman
 - Debugged backend endpoints and file structure
 - finally pushed to github as an actual project
+- Set up password hashing and login on backend
 - ?? setting up frontend Services to connect to the backend
-- ?? Set up password hashing and salting
 
 ### March 19
 
