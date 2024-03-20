@@ -6,7 +6,7 @@
 - Debugged backend endpoints and file structure
 - finally pushed to github as an actual project
 - Set up password hashing and login on backend
-- ?? setting up frontend Services to connect to the backend
+- Set up frontend services to connect to the backend
 
 ### March 19
 
