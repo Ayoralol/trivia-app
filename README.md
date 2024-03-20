@@ -1,4 +1,10 @@
-# Trivia Game!
+# Trivia Time!
+
+### Match 21
+
+- ?? Get pages working and components made
+- ?? Have working game by 1pm
+- ?? use docker on the game by 1pm
 
 ### March 20
 
@@ -7,6 +13,7 @@
 - finally pushed to github as an actual project
 - Set up password hashing and login on backend
 - Set up frontend services to connect to the backend
+- Started file structure of frontend components/containers/pages
 
 ### March 19
 

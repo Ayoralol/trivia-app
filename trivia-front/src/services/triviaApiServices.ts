@@ -10,16 +10,6 @@ export interface TriviaQuestion {
   incorrect_answers: string[];
 }
 
-export interface User {
-  username: string;
-  password: string;
-  high_score: number;
-  answered_mc: number;
-  answered_tf: number;
-  incorrect_mc: number;
-  incorrect_tf: number;
-}
-
 export const getTriviaQuestions = async (
   amount: number,
   category: number,
