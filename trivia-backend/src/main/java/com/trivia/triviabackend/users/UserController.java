@@ -2,6 +2,7 @@ package com.trivia.triviabackend.users;
 
 import com.trivia.triviabackend.exceptions.NotFoundException;
 import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

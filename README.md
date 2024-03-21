@@ -2,9 +2,8 @@
 
 ### Match 21
 
-- ?? Get pages working and components made
+- setup docker to create an image of the frontend
 - ?? Have working game by 1pm
-- ?? use docker on the game by 1pm
 
 ### March 20
 
