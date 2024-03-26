@@ -17,7 +17,7 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column
+  @Column(unique=true)
   @Size(max = 12)
   @NotNull
   private String username;
@@ -30,6 +30,9 @@ public class User {
 
   @Column
   private int high_score_ta;
+  
+  @Column
+  private String roles;
 
   public int getId() {
     return id;
@@ -65,5 +68,13 @@ public class User {
 
   public void setHigh_score_ta(int high_score_ta) {
     this.high_score_ta = high_score_ta;
+  }
+  
+  public String getRoles() {
+	  return roles;
+  }
+  
+  public void setRoles(String roles) {
+	  this.roles = roles;
   }
 }

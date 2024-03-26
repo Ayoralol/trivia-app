@@ -72,17 +72,13 @@ public class UserController {
 
   @PostMapping("/login")
   public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginRequest) {
-    boolean isAuthenticated =
-      this.userService.loginUser(
-          loginRequest.getUsername(),
-          loginRequest.getPassword()
-        );
-    if (isAuthenticated) {
-      return ResponseEntity.ok("Login successful");
-    } else {
-      return ResponseEntity
-        .status(HttpStatus.UNAUTHORIZED)
-        .body("Invalid username or password");
-    }
+      User authenticatedUser = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
+      if (authenticatedUser != null) {
+          return ResponseEntity.ok(authenticatedUser);
+      } else {
+          return ResponseEntity
+                  .status(HttpStatus.UNAUTHORIZED)
+                  .body("Invalid username or password");
+      }
   }
 }

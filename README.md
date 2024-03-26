@@ -1,9 +1,17 @@
 # Trivia Time!
 
-### Match 21
+### March 26
+
+- Reverted back to just MySQL db instead of Azure db
+- Once again troubleshooting 401 errors
+- Found temporary fix to the backend/db 401 errors - need to fix the backend to deal with insecurity
+- added working login functionality using context
+- Started actual frontend designing
+
+### March 21
 
 - setup docker to create an image of the frontend
-- ?? Have working game by 1pm
+- Attempted to troubleshoot 401 errors accessing the backend
 
 ### March 20
 

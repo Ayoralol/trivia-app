@@ -6,22 +6,25 @@ import Survival from "./pages/Survival/Survival";
 import TimeAttack from "./pages/TimeAttack/TimeAttack";
 import Profile from "./pages/Profile/Profile";
 import Landing from "./pages/Landing/Landing";
+import {UserContextProvider} from "./context/UserContext";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Navigation />
-        <div>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/survival" element={<Survival />} />
-            <Route path="/time-attack" element={<TimeAttack />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <UserContextProvider>
+        <BrowserRouter>
+          <Navigation />
+          <div>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/survival" element={<Survival />} />
+              <Route path="/time-attack" element={<TimeAttack />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </UserContextProvider>
     </>
   );
 }

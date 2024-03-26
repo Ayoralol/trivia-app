@@ -4,7 +4,17 @@ export interface User {
   password: string;
   high_score_surv: number;
   high_score_ta: number;
+  roles: string;
 }
+
+export const guestUser: User = {
+  id: -1,
+  username: "Guest",
+  password: "",
+  high_score_surv: 0,
+  high_score_ta: 0,
+  roles: "GUEST",
+};
 
 export interface EditUserParams {
   username?: string;
