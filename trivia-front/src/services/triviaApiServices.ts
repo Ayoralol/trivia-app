@@ -10,13 +10,22 @@ export interface TriviaQuestion {
   incorrect_answers: string[];
 }
 
-export const getTriviaQuestions = async (
-  amount: number,
-  category: number,
-  difficulty: string,
-  type: string
-) => {
-  const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`;
+interface TriviaParams {
+  amount?: number;
+  category?: number;
+  difficulty?: string;
+}
+
+export const getTriviaQuestions = async ({
+  amount = 20,
+  category,
+  difficulty,
+}: TriviaParams) => {
+  const urlAmount = `amount=${amount}`;
+  const urlCategory = category ? `&category=${category}` : "";
+  const urlDifficulty = difficulty ? `&difficulty=${difficulty}` : "";
+
+  const url = `https://opentdb.com/api.php?${urlAmount}${urlCategory}${urlDifficulty}`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Unable to fetch questions! status: ${response.status}`);

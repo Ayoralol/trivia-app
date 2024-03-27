@@ -30,10 +30,6 @@ const Navigation = () => {
     } else setShowModal(true);
   };
 
-  const endGame = () => {
-    navigate("/");
-  };
-
   const logout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       setUser(guestUser);
@@ -42,9 +38,9 @@ const Navigation = () => {
   };
 
   return (
-    <nav>
+    <>
       {(path === "/home" || path === "/profile") && (
-        <>
+        <nav>
           <NavButton handleClick={toHome} page={"home"}>
             Home
           </NavButton>
@@ -63,18 +59,9 @@ const Navigation = () => {
             </NavButton>
           )}
           {showModal && <LoginModal closeModal={showLogin} />}
-        </>
+        </nav>
       )}
-      {(path === "/survival" || path === "/time-attack") && (
-        <>
-          <p>Time Left</p>
-          <NavButton handleClick={endGame} page={"game"}>
-            Finish Game
-          </NavButton>
-          <p>Score</p>
-        </>
-      )}
-    </nav>
+    </>
   );
 };
 

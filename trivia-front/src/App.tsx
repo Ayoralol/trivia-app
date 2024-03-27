@@ -7,6 +7,7 @@ import TimeAttack from "./pages/TimeAttack/TimeAttack";
 import Profile from "./pages/Profile/Profile";
 import Landing from "./pages/Landing/Landing";
 import {UserContextProvider} from "./context/UserContext";
+import FreePlay from "./pages/FreePlay/FreePlay";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/survival" element={<Survival />} />
               <Route path="/time-attack" element={<TimeAttack />} />
+              <Route path="/free-play" element={<FreePlay />} />
             </Routes>
           </div>
         </BrowserRouter>

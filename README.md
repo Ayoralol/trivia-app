@@ -1,5 +1,9 @@
 # Trivia Time!
 
+### March 27
+
+- Front end work -- making the actual game
+
 ### March 26
 
 - Reverted back to just MySQL db instead of Azure db
