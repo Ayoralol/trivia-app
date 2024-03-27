@@ -31,7 +31,12 @@ export const getTriviaQuestions = async ({
     throw new Error(`Unable to fetch questions! status: ${response.status}`);
   }
   const data = await response.json();
-  return data.results;
+  return data.results.map((question: TriviaQuestion) => ({
+    ...question,
+    question: decodeHtml(question.question),
+    correct_answer: decodeHtml(question.correct_answer),
+    incorrect_answers: question.incorrect_answers.map(decodeHtml),
+  }));
 };
 
 export function shuffleAnswers(array: any[]) {
@@ -40,4 +45,11 @@ export function shuffleAnswers(array: any[]) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+}
+
+export function decodeHtml(html: string) {
+  // why does this feel so hacky?
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
 }

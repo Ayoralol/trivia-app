@@ -2,7 +2,10 @@
 
 ### March 27
 
-- Made working Survival game (currently no timer)
+- Made working Survival game (without timer)
+- added db highscore updating on survival completion
+- Added HTML decode functionality for questions and answers
+- Implemented survival timer per question
 
 ### March 26
 

@@ -21,11 +21,6 @@ const Survival = () => {
 
   const navigate = useNavigate();
 
-  const fetchQuestions = async () => {
-    const response = await getTriviaQuestions({amount: 15});
-    setQuestions(response);
-  };
-
   useEffect(() => {
     setTimer(0);
     setScore(0);
@@ -36,11 +31,36 @@ const Survival = () => {
     setLives(3);
   }, []);
 
+  useEffect(() => {
+    let interval: number | null = null;
+
+    if (timer > 0 && !gameOver && !breakTime && !startScreen) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (!timer || gameOver || breakTime || startScreen) {
+      clearInterval(interval!);
+      handleNextQuestion(false, 1);
+    }
+
+    return () => {
+      clearInterval(interval!);
+    };
+  }, [timer, gameOver, breakTime, startScreen]);
+
+  const fetchQuestions = async () => {
+    const response = await getTriviaQuestions({amount: 15});
+    setQuestions(response);
+  };
+
   const toHome = () => {
     navigate("/home");
   };
 
   const handleStart = async () => {
+    if (!breakTime) {
+      setLives(3);
+    }
     await fetchQuestions();
     setStartScreen(false);
     setBreakTime(false);
@@ -145,6 +165,3 @@ const Survival = () => {
 export default Survival;
 
 // Need - Timer for Survival
-// Need - Score for Survival
-// Need - Game Over for Survival
-// Need - "Break" Screen to fetch more questions
