@@ -2,7 +2,7 @@
 
 ### March 27
 
-- Front end work -- making the actual game
+- Made working Survival game (currently no timer)
 
 ### March 26
 
