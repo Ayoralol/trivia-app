@@ -76,13 +76,19 @@ export const getUserById = async (id: number) => {
 };
 
 export const editUser = async (id: number, params: EditUserParams) => {
+  const currentUser = await getUserById(id);
+
+  const {password, ...currentUserWithoutPassword} = currentUser;
+
+  const updatedUser = {...currentUserWithoutPassword, ...params};
+
   const url = `http://localhost:8080/users/${id}`;
   const response = await fetch(url, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(params),
+    body: JSON.stringify(updatedUser),
   });
   if (!response.ok) {
     throw new Error(`Unable to edit user! status: ${response.status}`);

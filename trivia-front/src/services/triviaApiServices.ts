@@ -12,7 +12,7 @@ export interface TriviaQuestion {
 
 interface TriviaParams {
   amount?: number;
-  category?: number;
+  category?: string;
   difficulty?: string;
 }
 

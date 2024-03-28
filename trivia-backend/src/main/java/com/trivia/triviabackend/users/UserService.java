@@ -62,8 +62,10 @@ public class UserService {
     mapper.map(data, foundUser);
 
     // Hash the password before saving the user
+    if (data.getPassword() != null) {
     String hashedPassword = passwordEncoder.encode(foundUser.getPassword());
     foundUser.setPassword(hashedPassword);
+    }
 
     User updated = this.repo.save(foundUser);
     return Optional.of(updated);

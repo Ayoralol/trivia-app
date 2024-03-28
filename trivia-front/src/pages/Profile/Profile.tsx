@@ -1,8 +1,12 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {UserContext} from "../../context/UserContext";
 
 const Profile = () => {
-  const {user} = useContext(UserContext);
+  const {user, reloadUser} = useContext(UserContext);
+
+  useEffect(() => {
+    reloadUser(user.id);
+  }, [user]);
 
   return (
     <div>

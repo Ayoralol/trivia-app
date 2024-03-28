@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import Navigation from "./containers/Navigation/Navigation";
 import Home from "./pages/Home/Home";
 import Survival from "./pages/Survival/Survival";

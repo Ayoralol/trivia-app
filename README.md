@@ -1,5 +1,13 @@
 # Trivia Time!
 
+### March 28
+
+- De-bugged Survival (Break Problems, Game ending on 1 life)
+- Made Time-Attack gamemode
+- Made Free-Play gamemode
+- Added select boxes to Free-Play to choose category and difficulty
+- Fixed more backend problems (Null updateUser parameters overwriting instead of being ignored)
+
 ### March 27
 
 - Made working Survival game (without timer)

@@ -12,9 +12,13 @@ const LoginModal: React.FC<LoginModalProps> = ({closeModal}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    login(username, password);
+    try {
+      login(username, password);
+    } catch (error) {
+      console.error("Unable to log in", error);
+    }
   };
 
   return (

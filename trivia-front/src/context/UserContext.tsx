@@ -13,7 +13,6 @@ export interface UserContextType {
   reloadUser: (id: number) => void;
 }
 
-// Create the context with default values
 export const UserContext = createContext<UserContextType>({
   user: guestUser,
   setUser: () => {},

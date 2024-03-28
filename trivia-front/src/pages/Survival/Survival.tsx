@@ -18,6 +18,7 @@ const Survival = () => {
   const [breakTime, setBreakTime] = useState(false);
   const [startScreen, setStartScreen] = useState(true);
   const [lives, setLives] = useState(3);
+  const [difficulty, setDifficulty] = useState("easy");
 
   const navigate = useNavigate();
 
@@ -38,9 +39,11 @@ const Survival = () => {
       interval = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
-    } else if (!timer || gameOver || breakTime || startScreen) {
+    } else if (!timer && !gameOver && !breakTime && !startScreen) {
       clearInterval(interval!);
       handleNextQuestion(false, 1);
+    } else {
+      clearInterval(interval!);
     }
 
     return () => {
@@ -48,8 +51,11 @@ const Survival = () => {
     };
   }, [timer, gameOver, breakTime, startScreen]);
 
-  const fetchQuestions = async () => {
-    const response = await getTriviaQuestions({amount: 15});
+  const fetchQuestions = async (difficulty: string) => {
+    const response = await getTriviaQuestions({
+      amount: 15,
+      difficulty: difficulty,
+    });
     setQuestions(response);
   };
 
@@ -57,27 +63,46 @@ const Survival = () => {
     navigate("/home");
   };
 
-  const handleStart = async () => {
+  const handleContinue = async (difficultyParam: string = difficulty) => {
+    setDifficulty(difficultyParam);
     if (!breakTime) {
       setLives(3);
     }
-    await fetchQuestions();
+    await fetchQuestions(difficultyParam);
     setStartScreen(false);
     setBreakTime(false);
     setQuestionIndex(0);
     setTimer(20);
   };
 
+  const handleStartEasy = async () => {
+    handleContinue("easy");
+  };
+
+  const handleStartMedium = async () => {
+    handleContinue("medium");
+  };
+
+  const handleStartHard = async () => {
+    handleContinue("hard");
+  };
+
+  const handleStartAny = async () => {
+    handleContinue("");
+  };
+
   const handleNextQuestion = (result: boolean, multi: number) => {
     if (result) {
       setScore((prevScore) => prevScore + 10 * multi);
     } else {
+      if (lives === 1) {
+        setGameOver(true);
+        return;
+      }
       setLives((prevLives) => prevLives - 1);
     }
 
-    if (lives === 1) {
-      setGameOver(true);
-    } else if (questionIndex === 14) {
+    if (questionIndex === 14) {
       setBreakTime(true);
     } else {
       setQuestionIndex((prevQuestionIndex) => prevQuestionIndex + 1);
@@ -95,7 +120,11 @@ const Survival = () => {
             Answer questions until you get 3 wrong! You will have a 20 second
             timer per question and will get a break after 15 questions!
           </p>
-          <Button handleClick={handleStart}>Start</Button>
+          <p>Choose your difficulty to start!</p>
+          <Button handleClick={handleStartEasy}>Easy!</Button>
+          <Button handleClick={handleStartMedium}>Medium!</Button>
+          <Button handleClick={handleStartHard}>Hard!</Button>
+          <Button handleClick={handleStartAny}>Any!</Button>
         </div>
       );
     }
@@ -122,7 +151,7 @@ const Survival = () => {
       return (
         <div>
           <h1>Break Time!</h1>
-          <Button handleClick={handleStart}>Continue</Button>
+          <Button handleClick={handleContinue}>Continue</Button>
         </div>
       );
     }
@@ -163,5 +192,3 @@ const Survival = () => {
 };
 
 export default Survival;
-
-// Need - Timer for Survival
