@@ -1,0 +1,21 @@
+.cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 85vh;
+  color: black;
+  & > * {
+    margin-top: 3vh;
+  }
+  &__question {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  &__answers {
+    width: 40vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

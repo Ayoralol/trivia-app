@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {TriviaQuestion, shuffleAnswers} from "../../services/triviaApiServices";
 import AnswerButton from "../AnswerButton/AnswerButton";
 import Button from "../Button/Button";
+import styles from "./Question.module.scss";
 
 interface QuestionProps {
   handleSubmit: (result: boolean, multi: number) => void;
@@ -19,6 +20,7 @@ const Question: React.FC<QuestionProps> = ({handleSubmit, question}) => {
     ];
     shuffleAnswers(shuffledAnswers);
     setAnswers(shuffledAnswers);
+    setSelectedAnswer("");
   }, [question]);
 
   const selectAnswer = (answer: string) => {
@@ -45,16 +47,24 @@ const Question: React.FC<QuestionProps> = ({handleSubmit, question}) => {
   };
 
   return (
-    <div>
-      <p>{question.question}</p>
-      <div>
+    <div className={styles.cont}>
+      <p className={styles.cont__question}>{question.question}</p>
+      <div className={styles.cont__answers}>
         {answers.map((answer, i) => (
-          <AnswerButton key={i} selectAnswer={selectAnswer}>
+          <AnswerButton
+            key={i}
+            selectAnswer={selectAnswer}
+            selectedAnswer={selectedAnswer}>
             {answer}
           </AnswerButton>
         ))}
       </div>
-      <Button handleClick={handleSubmitAnswer}>Submit!</Button>
+      <Button
+        handleClick={handleSubmitAnswer}
+        size={"medium"}
+        selected={selectedAnswer == "" ? true : false}>
+        Submit!
+      </Button>
     </div>
   );
 };

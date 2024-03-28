@@ -1,6 +1,7 @@
 import {createContext, useState} from "react";
 import {
   User,
+  createUser,
   getUserById,
   guestUser,
   loginUser,
@@ -11,6 +12,7 @@ export interface UserContextType {
   setUser: (user: User) => void;
   login: (username: string, password: string) => void;
   reloadUser: (id: number) => void;
+  createNewUser: (username: string, password: string) => void;
 }
 
 export const UserContext = createContext<UserContextType>({
@@ -18,6 +20,7 @@ export const UserContext = createContext<UserContextType>({
   setUser: () => {},
   login: () => {},
   reloadUser: () => {},
+  createNewUser: () => {},
 });
 
 export const UserContextProvider = ({
@@ -31,7 +34,6 @@ export const UserContextProvider = ({
     try {
       const user = await loginUser(username, password);
       setUser(user);
-      console.log("Logged In", user);
     } catch (error) {
       console.error("Unable to Log In", error);
     }
@@ -49,8 +51,18 @@ export const UserContextProvider = ({
     }
   };
 
+  const createNewUser = async (username: string, password: string) => {
+    try {
+      const user = await createUser(username, password);
+      setUser(user);
+    } catch (error) {
+      console.error("Unable to Create User", error);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{user, setUser, login, reloadUser}}>
+    <UserContext.Provider
+      value={{user, setUser, login, reloadUser, createNewUser}}>
       {children}
     </UserContext.Provider>
   );

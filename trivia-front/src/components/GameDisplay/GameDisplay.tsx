@@ -1,3 +1,5 @@
+import styles from "./GameDisplay.module.scss";
+
 interface GameDisplayProps {
   tag: string;
   children: number;
@@ -5,9 +7,9 @@ interface GameDisplayProps {
 
 const GameDisplay: React.FC<GameDisplayProps> = ({tag, children}) => {
   return (
-    <div>
-      <p>{tag}</p>
-      <p>{children}</p>
+    <div className={styles.cont}>
+      <p className={styles.cont__head}>{tag}</p>
+      <p className={styles.cont__value}>{children}</p>
     </div>
   );
 };

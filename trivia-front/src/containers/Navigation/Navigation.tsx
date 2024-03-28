@@ -1,9 +1,10 @@
 import {useContext, useState} from "react";
-import NavButton from "../../components/NavButton/NavButton";
 import {useLocation, useNavigate} from "react-router-dom";
 import LoginModal from "../LoginModal/LoginModal";
 import {UserContext} from "../../context/UserContext";
 import {guestUser} from "../../services/userServices";
+import styles from "./Navigation.module.scss";
+import Button from "../../components/Button/Button";
 
 const Navigation = () => {
   const {user, setUser} = useContext(UserContext);
@@ -40,23 +41,23 @@ const Navigation = () => {
   return (
     <>
       {(path === "/home" || path === "/profile") && (
-        <nav>
-          <NavButton handleClick={toHome} page={"home"}>
+        <nav className={styles.nav}>
+          <Button handleClick={toHome} size={"small"}>
             Home
-          </NavButton>
+          </Button>
           {user.id > 0 && (
-            <NavButton handleClick={toProfile} page={"profile"}>
+            <Button handleClick={toProfile} size={"small"}>
               Profile
-            </NavButton>
+            </Button>
           )}
           {user.id > 0 ? (
-            <NavButton handleClick={logout} page={"login"}>
+            <Button handleClick={logout} size={"small"}>
               Logout
-            </NavButton>
+            </Button>
           ) : (
-            <NavButton handleClick={showLogin} page={"login"}>
+            <Button handleClick={showLogin} size={"small"}>
               Login
-            </NavButton>
+            </Button>
           )}
           {showModal && <LoginModal closeModal={showLogin} />}
         </nav>

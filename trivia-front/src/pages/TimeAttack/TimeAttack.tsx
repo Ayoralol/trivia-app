@@ -6,6 +6,7 @@ import Question from "../../components/Question/Question";
 import {UserContext} from "../../context/UserContext";
 import {editUser} from "../../services/userServices";
 import GameDisplay from "../../components/GameDisplay/GameDisplay";
+import styles from "../../Styles/GameStyles.module.scss";
 
 const TimeAttack = () => {
   const {user} = useContext(UserContext);
@@ -17,6 +18,7 @@ const TimeAttack = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [startScreen, setStartScreen] = useState(true);
   const [difficulty, setDifficulty] = useState("easy");
+  const [selected, setSelected] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,6 +28,7 @@ const TimeAttack = () => {
     setGameOver(false);
     setQuestionIndex(0);
     setStartScreen(true);
+    setSelected(false);
   }, []);
 
   useEffect(() => {
@@ -68,23 +71,23 @@ const TimeAttack = () => {
   };
 
   const handleStartEasy = async () => {
-    setDifficulty("easy");
-    handleStart();
+    setSelected(true);
+    handleStart("easy");
   };
 
   const handleStartMedium = async () => {
-    setDifficulty("medium");
-    handleStart();
+    setSelected(true);
+    handleStart("easy");
   };
 
   const handleStartHard = async () => {
-    setDifficulty("hard");
-    handleStart();
+    setSelected(true);
+    handleStart("hard");
   };
 
   const handleStartAny = async () => {
-    setDifficulty("");
-    handleStart();
+    setSelected(true);
+    handleStart("");
   };
 
   const handleNextQuestion = (result: boolean, multi: number) => {
@@ -102,18 +105,48 @@ const TimeAttack = () => {
   const renderStartScreen = () => {
     if (startScreen && !gameOver) {
       return (
-        <div>
-          <Button handleClick={toHome}>Return Home</Button>
-          <h1>Time Attack Mode!</h1>
-          <p>
-            You have 3 minutes to answer up to 30 questions, with a bonus for
-            time left over!
-          </p>
-          <p>Choose your difficulty to start!</p>
-          <Button handleClick={handleStartEasy}>Easy!</Button>
-          <Button handleClick={handleStartMedium}>Medium!</Button>
-          <Button handleClick={handleStartHard}>Hard!</Button>
-          <Button handleClick={handleStartAny}>Any!</Button>
+        <div className={styles.cont}>
+          <div className={styles.cont__bar}>
+            <Button handleClick={toHome} size={"small"}>
+              Return Home
+            </Button>
+          </div>
+          <div className={styles.cont__main}>
+            <p className={styles.cont__main__head}>Time Attack Mode!</p>
+            <p className={styles.cont__main__para}>
+              You have 3 minutes to answer up to 30 questions, with a bonus for
+              time left over!
+            </p>
+            <p className={styles.cont__main__para}>
+              Choose your difficulty to start!
+            </p>
+            <div className={styles.cont__main__diff}>
+              <Button
+                handleClick={handleStartEasy}
+                size={"medium"}
+                selected={selected}>
+                Easy!
+              </Button>
+              <Button
+                handleClick={handleStartMedium}
+                size={"medium"}
+                selected={selected}>
+                Medium!
+              </Button>
+              <Button
+                handleClick={handleStartHard}
+                size={"medium"}
+                selected={selected}>
+                Hard!
+              </Button>
+              <Button
+                handleClick={handleStartAny}
+                size={"medium"}
+                selected={selected}>
+                Any!
+              </Button>
+            </div>
+          </div>
         </div>
       );
     }
@@ -122,13 +155,17 @@ const TimeAttack = () => {
   const renderGame = () => {
     if (!gameOver && !startScreen) {
       return (
-        <div>
-          <GameDisplay tag={"Time "}>{timer}</GameDisplay>
-          <GameDisplay tag={"Score "}>{score}</GameDisplay>
-          <Question
-            handleSubmit={handleNextQuestion}
-            question={questions[questionIndex]}
-          />
+        <div className={styles.cont}>
+          <div className={styles.cont__bar}>
+            <GameDisplay tag={"Time "}>{timer}</GameDisplay>
+            <GameDisplay tag={"Score "}>{score}</GameDisplay>
+          </div>
+          <div className={styles.cont__main}>
+            <Question
+              handleSubmit={handleNextQuestion}
+              question={questions[questionIndex]}
+            />
+          </div>
         </div>
       );
     }
@@ -142,18 +179,32 @@ const TimeAttack = () => {
     }
 
     return (
-      <div>
-        <h1>Game Over!</h1>
-        <p>Your Score was: {score}</p>
-        {isNewHighScore ? (
-          <p>New Time Attack High Score!: {score}</p>
-        ) : (
-          user.id !== -1 && (
-            <p>Your Time Attack High Score is: {user.high_score_ta}</p>
-          )
-        )}
-        {user.id === -1 && <p>Login next time to save your score!</p>}
-        <Button handleClick={toHome}>Return Home!</Button>
+      <div className={styles.contG}>
+        <div className={styles.contG__main}>
+          <p className={styles.contG__main__head}>Game Over!</p>
+          <p className={styles.contG__main__para}>Your Score was: {score}</p>
+          {isNewHighScore ? (
+            <p className={styles.contG__main__para}>
+              New Time Attack High Score!: {score}
+            </p>
+          ) : (
+            user.id !== -1 && (
+              <p className={styles.contG__main__para}>
+                Your Time Attack High Score is: {user.high_score_ta}
+              </p>
+            )
+          )}
+          {user.id === -1 && (
+            <p className={styles.contG__main__para}>
+              Login next time to save your score!
+            </p>
+          )}
+          <div className={styles.contG__main__diff}>
+            <Button handleClick={toHome} size={"medium"}>
+              Return Home!
+            </Button>
+          </div>
+        </div>
       </div>
     );
   };

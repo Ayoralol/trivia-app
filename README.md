@@ -1,5 +1,13 @@
 # Trivia Time!
 
+#### To Fix and Add
+
+- Proper backend security for users (Before deploying)
+- App wide toast notifications
+- stay logged in on refresh
+- Add backend question saving
+- Add failed questions to user so they can re-attempt them
+
 ### March 28
 
 - De-bugged Survival (Break Problems, Game ending on 1 life)
@@ -7,6 +15,8 @@
 - Made Free-Play gamemode
 - Added select boxes to Free-Play to choose category and difficulty
 - Fixed more backend problems (Null updateUser parameters overwriting instead of being ignored)
+- Basic Stylings for entire project
+- Added new user capability
 
 ### March 27
 

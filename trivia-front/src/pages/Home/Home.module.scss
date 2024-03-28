@@ -1,0 +1,28 @@
+.cont {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 85vh;
+  color: black;
+  &__option {
+    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 40vw;
+    margin-top: 3vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    &__head {
+      font-size: 36px;
+      font-weight: 500;
+    }
+    &__para {
+      font-size: 20px;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+}

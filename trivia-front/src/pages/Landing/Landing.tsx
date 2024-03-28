@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import Button from "../../components/Button/Button";
+import styles from "./Landing.module.scss";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -8,7 +9,13 @@ const Landing = () => {
     navigate("/home");
   };
 
-  return <Button handleClick={toHome}>Lets Start!</Button>;
+  return (
+    <div className={styles.container}>
+      <Button handleClick={toHome} size={"large"}>
+        Lets Start!
+      </Button>
+    </div>
+  );
 };
 
 export default Landing;

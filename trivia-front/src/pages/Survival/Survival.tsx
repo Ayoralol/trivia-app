@@ -6,6 +6,7 @@ import Question from "../../components/Question/Question";
 import {UserContext} from "../../context/UserContext";
 import {editUser} from "../../services/userServices";
 import GameDisplay from "../../components/GameDisplay/GameDisplay";
+import styles from "../../Styles/GameStyles.module.scss";
 
 const Survival = () => {
   const {user} = useContext(UserContext);
@@ -19,6 +20,7 @@ const Survival = () => {
   const [startScreen, setStartScreen] = useState(true);
   const [lives, setLives] = useState(3);
   const [difficulty, setDifficulty] = useState("easy");
+  const [selected, setSelected] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,6 +32,7 @@ const Survival = () => {
     setStartScreen(true);
     setBreakTime(false);
     setLives(3);
+    setSelected(false);
   }, []);
 
   useEffect(() => {
@@ -76,18 +79,22 @@ const Survival = () => {
   };
 
   const handleStartEasy = async () => {
+    setSelected(true);
     handleContinue("easy");
   };
 
   const handleStartMedium = async () => {
+    setSelected(true);
     handleContinue("medium");
   };
 
   const handleStartHard = async () => {
+    setSelected(true);
     handleContinue("hard");
   };
 
   const handleStartAny = async () => {
+    setSelected(true);
     handleContinue("");
   };
 
@@ -113,18 +120,48 @@ const Survival = () => {
   const renderStartScreen = () => {
     if (startScreen && !gameOver && !breakTime) {
       return (
-        <div>
-          <Button handleClick={toHome}>Return Home</Button>
-          <h1>Survival Mode!</h1>
-          <p>
-            Answer questions until you get 3 wrong! You will have a 20 second
-            timer per question and will get a break after 15 questions!
-          </p>
-          <p>Choose your difficulty to start!</p>
-          <Button handleClick={handleStartEasy}>Easy!</Button>
-          <Button handleClick={handleStartMedium}>Medium!</Button>
-          <Button handleClick={handleStartHard}>Hard!</Button>
-          <Button handleClick={handleStartAny}>Any!</Button>
+        <div className={styles.cont}>
+          <div className={styles.cont__bar}>
+            <Button handleClick={toHome} size={"small"}>
+              Return Home
+            </Button>
+          </div>
+          <div className={styles.cont__main}>
+            <p className={styles.cont__main__head}>Survival Mode!</p>
+            <p className={styles.cont__main__para}>
+              Answer questions until you get 3 wrong! You will have a 20 second
+              timer per question and will get a break after 15 questions!
+            </p>
+            <p className={styles.cont__main__para}>
+              Choose your difficulty to start!
+            </p>
+            <div className={styles.cont__main__diff}>
+              <Button
+                handleClick={handleStartEasy}
+                size={"medium"}
+                selected={selected}>
+                Easy!
+              </Button>
+              <Button
+                handleClick={handleStartMedium}
+                size={"medium"}
+                selected={selected}>
+                Medium!
+              </Button>
+              <Button
+                handleClick={handleStartHard}
+                size={"medium"}
+                selected={selected}>
+                Hard!
+              </Button>
+              <Button
+                handleClick={handleStartAny}
+                size={"medium"}
+                selected={selected}>
+                Any!
+              </Button>
+            </div>
+          </div>
         </div>
       );
     }
@@ -133,14 +170,18 @@ const Survival = () => {
   const renderGame = () => {
     if (!gameOver && !breakTime && !startScreen) {
       return (
-        <div>
-          <GameDisplay tag={"Time "}>{timer}</GameDisplay>
-          <GameDisplay tag={"Score "}>{score}</GameDisplay>
-          <GameDisplay tag={"Lives "}>{lives}</GameDisplay>
-          <Question
-            handleSubmit={handleNextQuestion}
-            question={questions[questionIndex]}
-          />
+        <div className={styles.cont}>
+          <div className={styles.cont__bar}>
+            <GameDisplay tag={"Time "}>{timer}</GameDisplay>
+            <GameDisplay tag={"Lives "}>{lives}</GameDisplay>
+            <GameDisplay tag={"Score "}>{score}</GameDisplay>
+          </div>
+          <div className={styles.cont__main}>
+            <Question
+              handleSubmit={handleNextQuestion}
+              question={questions[questionIndex]}
+            />
+          </div>
         </div>
       );
     }
@@ -149,9 +190,16 @@ const Survival = () => {
   const renderBreak = () => {
     if (breakTime && !gameOver && !startScreen) {
       return (
-        <div>
-          <h1>Break Time!</h1>
-          <Button handleClick={handleContinue}>Continue</Button>
+        <div className={styles.contG}>
+          <div className={styles.contG__main}>
+            <p className={styles.contG__main__head}>Break Time!</p>
+            <p className={styles.contG__main__para}>Your'e doing great!</p>
+            <div className={styles.contG__main__diff}>
+              <Button handleClick={handleContinue} size={"medium"}>
+                Keep Going!
+              </Button>
+            </div>
+          </div>
         </div>
       );
     }
@@ -165,29 +213,41 @@ const Survival = () => {
     }
 
     return (
-      <div>
-        <h1>Game Over!</h1>
-        <p>Your score was: {score}</p>
-        {isNewHighScore ? (
-          <p>New High Score!: {score}</p>
-        ) : (
-          user.id !== -1 && (
-            <p>Your Survival High Score is: {user.high_score_surv}</p>
-          )
-        )}
-        {user.id === -1 && <p>Login next time to save your score!</p>}
-        <Button handleClick={toHome}>Return Home!</Button>
+      <div className={styles.contG}>
+        <div className={styles.contG__main}>
+          <p className={styles.contG__main__head}>Game Over!</p>
+          <p className={styles.contG__main__para}>Your score was: {score}</p>
+          {isNewHighScore ? (
+            <p className={styles.contG__main__para}>New High Score!: {score}</p>
+          ) : (
+            user.id !== -1 && (
+              <p className={styles.contG__main__para}>
+                Your Survival High Score is: {user.high_score_surv}
+              </p>
+            )
+          )}
+          {user.id === -1 && (
+            <p className={styles.contG__main__para}>
+              Login next time to save your score!
+            </p>
+          )}
+          <div className={styles.contG__main__diff}>
+            <Button handleClick={toHome} size={"medium"}>
+              Return Home!
+            </Button>
+          </div>
+        </div>
       </div>
     );
   };
 
   return (
-    <div>
+    <>
       {renderStartScreen()}
       {renderGame()}
       {renderBreak()}
       {gameOver && renderGameOver()}
-    </div>
+    </>
   );
 };
 
