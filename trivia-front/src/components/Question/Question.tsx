@@ -3,6 +3,7 @@ import {TriviaQuestion, shuffleAnswers} from "../../services/triviaApiServices";
 import AnswerButton from "../AnswerButton/AnswerButton";
 import Button from "../Button/Button";
 import styles from "./Question.module.scss";
+import QResult from "../QResult/QResult";
 
 interface QuestionProps {
   handleSubmit: (result: boolean, multi: number) => void;
@@ -12,12 +13,15 @@ interface QuestionProps {
 const Question: React.FC<QuestionProps> = ({handleSubmit, question}) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string>("");
   const [answers, setAnswers] = useState<string[]>([]);
+  const [haveResult, setHaveResult] = useState<boolean>(false);
+  const [result, setResult] = useState<boolean>(false);
 
   useEffect(() => {
     const shuffledAnswers = [
       ...question.incorrect_answers,
       question.correct_answer,
     ];
+    setHaveResult(false);
     shuffleAnswers(shuffledAnswers);
     setAnswers(shuffledAnswers);
     setSelectedAnswer("");
@@ -39,11 +43,12 @@ const Question: React.FC<QuestionProps> = ({handleSubmit, question}) => {
       multi *= 1.5;
     }
 
-    if (selectedAnswer === question.correct_answer) {
-      handleSubmit(true, multi);
-    } else {
-      handleSubmit(false, multi);
-    }
+    const newResult = selectedAnswer === question.correct_answer;
+    setResult(newResult);
+    setHaveResult(true);
+    setTimeout(() => {
+      handleSubmit(newResult, multi);
+    }, 1000);
   };
 
   return (
@@ -65,6 +70,7 @@ const Question: React.FC<QuestionProps> = ({handleSubmit, question}) => {
         selected={selectedAnswer == "" ? true : false}>
         Submit!
       </Button>
+      {haveResult && <QResult result={result} />}
     </div>
   );
 };

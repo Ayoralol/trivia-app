@@ -6,8 +6,8 @@ import Survival from "./pages/Survival/Survival";
 import TimeAttack from "./pages/TimeAttack/TimeAttack";
 import Profile from "./pages/Profile/Profile";
 import Landing from "./pages/Landing/Landing";
-import {UserContextProvider} from "./context/UserContext";
 import FreePlay from "./pages/FreePlay/FreePlay";
+import {UserContextProvider} from "./context/UserContext";
 
 function App() {
   return (

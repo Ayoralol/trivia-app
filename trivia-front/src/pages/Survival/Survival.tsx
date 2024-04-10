@@ -12,10 +12,10 @@ const Survival = () => {
   const {user} = useContext(UserContext);
 
   const [questions, setQuestions] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [questionIndex, setQuestionIndex] = useState(0);
   const [breakTime, setBreakTime] = useState(false);
   const [startScreen, setStartScreen] = useState(true);
   const [lives, setLives] = useState(3);

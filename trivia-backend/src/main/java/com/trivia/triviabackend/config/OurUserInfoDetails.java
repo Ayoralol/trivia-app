@@ -13,6 +13,7 @@ import com.trivia.triviabackend.users.User;
 
 public class OurUserInfoDetails implements UserDetails {
 	
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
 	private List<GrantedAuthority> roles;

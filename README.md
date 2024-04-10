@@ -1,12 +1,23 @@
 # Trivia Time!
 
-#### To Fix and Add
+#### To Fix and Add Before Deploying
 
-- Proper backend security for users (Before deploying)
+##### Frontend
+
 - App wide toast notifications
-- stay logged in on refresh
-- Add backend question saving
+- stay logged in on refresh?
+- Add form validation
+- Make game elements into a different components to make it more reuseable
+
+##### Backend
+
+- Fix optional UpdateUserDTO parameters so it isnt done only in the frontend
+- add user fields validation
+- Proper security for users
+- Questions table
 - Add failed questions to user so they can re-attempt them
+
+## Work Log
 
 ### March 28
 

@@ -1,0 +1,23 @@
+.cont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__icon {
+    font-size: 0px;
+    color: green;
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+.small {
+  font-size: 0px;
+}
+
+.big {
+  font-size: 100px;
+}
