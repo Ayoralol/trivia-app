@@ -46,6 +46,7 @@ const Question: React.FC<QuestionProps> = ({handleSubmit, question}) => {
     const newResult = selectedAnswer === question.correct_answer;
     setResult(newResult);
     setHaveResult(true);
+    // Add animation class to the result
     setTimeout(() => {
       handleSubmit(newResult, multi);
     }, 1000);

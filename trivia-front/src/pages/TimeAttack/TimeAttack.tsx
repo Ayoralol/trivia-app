@@ -67,7 +67,7 @@ const TimeAttack = () => {
     await fetchQuestions(difficultyParam);
     setStartScreen(false);
     setQuestionIndex(0);
-    setTimer(180);
+    setTimer(300);
   };
 
   const handleStartEasy = async () => {
@@ -96,6 +96,9 @@ const TimeAttack = () => {
     }
 
     if (questionIndex === 29) {
+      const remainingTime = timer;
+      // Bonus for time left over 0.01x multi per second remaining
+      setScore((prevScore) => Math.floor(prevScore * (remainingTime / 100)));
       setGameOver(true);
     } else {
       setQuestionIndex((prevQuestionIndex) => prevQuestionIndex + 1);
@@ -114,7 +117,7 @@ const TimeAttack = () => {
           <div className={styles.cont__main}>
             <p className={styles.cont__main__head}>Time Attack Mode!</p>
             <p className={styles.cont__main__para}>
-              You have 3 minutes to answer up to 30 questions, with a bonus for
+              You have 5 minutes to answer up to 30 questions, with a bonus for
               time left over!
             </p>
             <p className={styles.cont__main__para}>

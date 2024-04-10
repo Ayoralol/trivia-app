@@ -2,6 +2,10 @@
 
 #### To Fix and Add Before Deploying
 
+TODAY
+
+-
+
 ##### Frontend
 
 - App wide toast notifications
@@ -18,6 +22,12 @@
 - Add failed questions to user so they can re-attempt them
 
 ## Work Log
+
+### April 11
+
+- Added Tick/Cross for correct or incorrect answers `QResult`
+- Added 0.01x Multiplier per second remaining for Time Attack
+- Changed Time Attack Timer from 6sec per Q => 10sec per Q
 
 ### March 28
 

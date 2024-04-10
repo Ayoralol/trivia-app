@@ -1,7 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import Button from "../../components/Button/Button";
 import styles from "./Home.module.scss";
-// import QResult from "../../components/QResult/QResult";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ const Home = () => {
 
   return (
     <div className={styles.cont}>
-      {/* <QResult result={true} /> */}
       <div className={styles.cont__option}>
         <p className={styles.cont__option__head}>Survival!</p>
         <p className={styles.cont__option__para}>

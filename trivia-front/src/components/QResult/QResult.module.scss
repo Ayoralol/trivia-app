@@ -9,9 +9,16 @@
   align-items: center;
   &__icon {
     font-size: 0px;
-    color: green;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
 }
 
 .small {
@@ -20,4 +27,5 @@
 
 .big {
   font-size: 100px;
+  transform: rotate(360deg);
 }
