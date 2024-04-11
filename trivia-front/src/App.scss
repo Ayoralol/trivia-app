@@ -1,5 +1,7 @@
+@import "/src/Styles/pallette.module.scss";
+
 body {
-  background-color: #e5dac9;
+  background-color: $white-bg;
   color: white;
   font-family: "Roboto", sans-serif;
   height: 100vh;

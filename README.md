@@ -4,7 +4,9 @@
 
 TODAY
 
--
+- Mobile site creation + Scalability to desktop
+- Create Logo
+- Implement "Lifetime Points" and correlate that to a level
 
 ##### Frontend
 
@@ -28,6 +30,7 @@ TODAY
 - Added Tick/Cross for correct or incorrect answers `QResult`
 - Added 0.01x Multiplier per second remaining for Time Attack
 - Changed Time Attack Timer from 6sec per Q => 10sec per Q
+- Stated Look re-do starting with Mobile view
 
 ### March 28
 

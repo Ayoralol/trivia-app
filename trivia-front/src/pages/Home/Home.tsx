@@ -25,7 +25,7 @@ const Home = () => {
           Pulls continuous questions from any category and difficulty until you
           get 3 wrong!
         </p>
-        <Button handleClick={toSurvival} size={"large"}>
+        <Button handleClick={toSurvival} size={"medium"}>
           Play Survival!
         </Button>
       </div>
@@ -35,7 +35,7 @@ const Home = () => {
           Pulls a random 30 questions that you have to answer as fast as
           possible!
         </p>
-        <Button handleClick={toTimeAttack} size={"large"}>
+        <Button handleClick={toTimeAttack} size={"medium"}>
           Play Time Attack!
         </Button>
       </div>
@@ -45,7 +45,7 @@ const Home = () => {
           Lets you choose the category and difficulty of the questions you want
           to answer!
         </p>
-        <Button handleClick={toFreePlay} size={"large"}>
+        <Button handleClick={toFreePlay} size={"medium"}>
           Play Free Play!
         </Button>
       </div>

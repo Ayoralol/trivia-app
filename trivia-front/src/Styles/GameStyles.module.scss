@@ -1,9 +1,14 @@
+@import "../Styles/pallette.module.scss";
+
 @mixin gameStyles {
   &__bar {
     height: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    background-color: $accent-purp;
+    border-radius: 0 0 10px 10px;
   }
   &__main {
     display: flex;
@@ -11,13 +16,13 @@
     align-items: center;
     flex-direction: column;
     height: 85vh;
-    color: black;
+    width: 90vw;
     &__head {
-      font-size: 36px;
+      font-size: 30px;
       font-weight: 500;
     }
     &__para {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
       text-align: center;
     }
@@ -25,7 +30,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      width: 40vw;
+      width: 90vw;
       &__label {
         font-size: 20px;
         font-weight: 400;
@@ -40,7 +45,7 @@
           cursor: pointer;
           transition: all 0.1s ease-in-out;
           &:hover {
-            background-color: #c5b7a1;
+            background-color: $accent-grey-hover;
           }
         }
       }
@@ -57,7 +62,8 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  color: black;
+  color: white;
+  background-color: $purp-bg;
   @include gameStyles;
 }
 

@@ -12,12 +12,28 @@ const Profile = () => {
   return (
     <div className={styles.out}>
       <div className={styles.cont}>
-        <p className={styles.cont__head}>Username</p>
-        <p className={styles.cont__para}>{user.username}</p>
-        <p className={styles.cont__head}>Survival High Score</p>
-        <p className={styles.cont__para}>{user.high_score_surv}</p>
-        <p className={styles.cont__head}>Time Attack High Score</p>
-        <p className={styles.cont__para}>{user.high_score_ta}</p>
+        <div className={styles.section}>
+          <p className={styles.cont__head}>Username</p>
+          <p className={styles.cont__para}>{user.username}</p>
+        </div>
+        <div className={styles.sec}>
+          <div className={styles.section}>
+            <p className={styles.cont__head}>Survival High Score</p>
+            <p className={styles.cont__para}>{user.high_score_surv}</p>
+          </div>
+          <div className={styles.section}>
+            <p className={styles.cont__head}>Time Attack High Score</p>
+            <p className={styles.cont__para}>{user.high_score_ta}</p>
+          </div>
+        </div>
+        <div className={styles.section}>
+          <p className={styles.cont__head}>Lifetime Points</p>
+          <p className={styles.cont__para}>{user.high_score_surv}</p>
+        </div>
+        <div className={styles.section}>
+          <p className={styles.cont__head}>Level</p>
+          <p className={styles.cont__para}>{user.high_score_surv}</p>
+        </div>
       </div>
     </div>
   );

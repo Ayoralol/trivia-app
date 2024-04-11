@@ -1,16 +1,18 @@
+@import "../../Styles/pallette.module.scss";
+
 .btn {
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: $accent-grey;
   color: #000;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  border: 2px solid rgba(143, 128, 103, 0.5);
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  border: none;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.1s ease-in-out;
   &:hover {
-    background-color: #c5b7a1;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    background-color: $accent-grey-hover;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
     transform: scale(1.02);
   }
 }
@@ -22,7 +24,7 @@
 }
 
 .medium {
-  width: 150px;
+  width: 155px;
   height: 50px;
   font-size: 18px;
 }
@@ -34,7 +36,7 @@
 }
 
 .selected {
-  background-color: #c5b7a1;
+  background-color: $accent-yellow;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   pointer-events: none;
 }

@@ -35,24 +35,24 @@ const Survival = () => {
     setSelected(false);
   }, []);
 
-  useEffect(() => {
-    let interval: number | null = null;
+  // useEffect(() => {
+  //   let interval: number | null = null;
 
-    if (timer > 0 && !gameOver && !breakTime && !startScreen) {
-      interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-    } else if (!timer && !gameOver && !breakTime && !startScreen) {
-      clearInterval(interval!);
-      handleNextQuestion(false, 1);
-    } else {
-      clearInterval(interval!);
-    }
+  //   if (timer > 0 && !gameOver && !breakTime && !startScreen) {
+  //     interval = setInterval(() => {
+  //       setTimer((prevTimer) => prevTimer - 1);
+  //     }, 1000);
+  //   } else if (!timer && !gameOver && !breakTime && !startScreen) {
+  //     clearInterval(interval!);
+  //     handleNextQuestion(false, 1);
+  //   } else {
+  //     clearInterval(interval!);
+  //   }
 
-    return () => {
-      clearInterval(interval!);
-    };
-  }, [timer, gameOver, breakTime, startScreen]);
+  //   return () => {
+  //     clearInterval(interval!);
+  //   };
+  // }, [timer, gameOver, breakTime, startScreen]);
 
   const fetchQuestions = async (difficulty: string) => {
     const response = await getTriviaQuestions({

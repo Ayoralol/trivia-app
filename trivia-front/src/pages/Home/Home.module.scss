@@ -1,3 +1,5 @@
+@import "../../Styles/pallette.module.scss";
+
 .cont {
   display: flex;
   justify-content: flex-start;
@@ -5,22 +7,24 @@
   flex-direction: column;
   height: 85vh;
   color: black;
+  background-color: $white-bg;
   &__option {
-    height: 20vh;
+    height: 25vh;
+    width: 80vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 40vw;
     margin-top: 3vh;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    background-color: $accent-light-purp;
     &__head {
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 500;
     }
     &__para {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 400;
       text-align: center;
     }
